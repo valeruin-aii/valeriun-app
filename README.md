@@ -13,7 +13,10 @@ valeriun-app/
 ├── packages/
 │   └── ui/                 # Design System e biblioteca de componentes Shadcn UI
 ├── docs/
-│   └── design/             # Tokens, diretrizes visuais e especificações de UI
+│   ├── architecture/       # Arquitetura geral, fluxo de dados e orquestração
+│   ├── design/             # Tokens, diretrizes visuais e especificações de UI
+│   ├── roadmap/            # Planejamento de módulos e status de desenvolvimento
+│   └── security/           # Checklist profissional de segurança e compliance
 ├── .agents/
 │   └── skills/             # Skills e diretrizes dos agentes de desenvolvimento
 ├── .spec/
@@ -24,6 +27,15 @@ valeriun-app/
 ├── turbo.json              # Configuração do pipeline Turborepo
 └── pnpm-workspace.yaml     # Configuração de workspaces pnpm
 ```
+
+---
+
+## Documentação Técnica
+
+- [**Arquitetura Geral**](file:///docs/architecture/overview.md): Camadas do sistema, orquestração de IA, filas e infraestrutura.
+- [**Checklist de Segurança**](file:///docs/security/checklist.md): Diretrizes de autenticação, MFA, RBAC, OAuth, criptografia e proteção OWASP.
+- [**Roadmap de Funcionalidades**](file:///docs/roadmap/features.md): Mapeamento de entregas e módulos do produto.
+- [**Design System & Tokens**](file:///docs/design/design-system.md): Paleta OKLCH, tipografia e tokens de interface.
 
 ---
 
