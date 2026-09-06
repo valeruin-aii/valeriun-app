@@ -1,0 +1,26 @@
+{
+  "testCommand": "pnpm test",
+  "reporter": "tap",
+  "testGlobs": [
+    "test/**",
+    "tests/**",
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "apps/**/*.test.*",
+    "apps/**/*.spec.*",
+    "packages/**/*.test.*",
+    "packages/**/*.spec.*",
+    "__tests__/**"
+  ],
+  "srcGlobs": [
+    "src/**",
+    "apps/**",
+    "packages/**"
+  ],
+  "ignoreGlobs": [
+    "test/fixtures/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/.turbo/**"
+  ]
+}

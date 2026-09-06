@@ -7,7 +7,10 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "spec": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs",
+    "audit": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs audit",
+    "spec:init": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs init"
   },
   "devDependencies": {
     "prettier": "^3.8.3",
