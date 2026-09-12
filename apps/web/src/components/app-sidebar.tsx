@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Link, useLocation } from "react-router-dom"
 import {
   LayoutDashboard,
   Bot,
@@ -7,7 +8,6 @@ import {
   User,
   CreditCard,
   Megaphone,
-  Globe2,
   Settings,
 } from "lucide-react"
 
@@ -30,7 +30,6 @@ interface NavItem {
   url: string
   icon: React.ComponentType<{ className?: string }>
   badge?: string
-  isActive?: boolean
 }
 
 interface NavGroup {
@@ -46,30 +45,13 @@ const navGroups: NavGroup[] = [
     items: [
       {
         title: "Agente IA",
-        url: "#",
+        url: "/agent-ai",
         icon: Bot,
         badge: "IA",
       },
       {
         title: "Relatórios",
-        url: "#",
-        icon: TrendingUp,
-      },
-    ],
-  },
-  {
-    title: "GOOGLE ADS",
-    icon: Globe2,
-    items: [
-      {
-        title: "Agente IA",
-        url: "#",
-        icon: Bot,
-        badge: "IA",
-      },
-      {
-        title: "Relatórios",
-        url: "#",
+        url: "/relatorios",
         icon: TrendingUp,
       },
     ],
@@ -80,18 +62,17 @@ const navGroups: NavGroup[] = [
     items: [
       {
         title: "Integrações",
-        url: "#",
+        url: "/integracoes",
         icon: SlidersHorizontal,
-        isActive: true,
       },
       {
         title: "Perfil",
-        url: "#",
+        url: "/perfil",
         icon: User,
       },
       {
         title: "Plano",
-        url: "#",
+        url: "/plano",
         icon: CreditCard,
       },
     ],
@@ -99,6 +80,8 @@ const navGroups: NavGroup[] = [
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const location = useLocation()
+
   return (
     <Sidebar className="border-r border-border/80 bg-sidebar" {...props}>
       <SidebarHeader className="h-16 justify-center px-6 border-b border-border/40">
@@ -135,10 +118,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton
-                render={<a href="#dashboard" />}
-                className="h-9 px-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/60 transition-colors rounded-lg"
+                render={<Link to="/" />}
+                isActive={location.pathname === "/"}
+                className={`h-9 px-3 text-sm font-medium rounded-lg transition-all ${
+                  location.pathname === "/"
+                    ? "bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/95 hover:text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/60"
+                }`}
               >
-                <LayoutDashboard className="h-4 w-4" />
+                <LayoutDashboard className={`h-4 w-4 ${location.pathname === "/" ? "text-primary-foreground" : "text-muted-foreground"}`} />
                 <span>Dashboard</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -159,12 +147,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenu className="gap-1">
                   {group.items.map((item) => {
                     const ItemIcon = item.icon
-                    const isActive = item.isActive
+                    const isActive = location.pathname === item.url
 
                     return (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton
-                          render={<a href={item.url} />}
+                          render={<Link to={item.url} />}
                           isActive={isActive}
                           className={`h-9 px-3 text-sm font-medium rounded-lg transition-all ${
                             isActive

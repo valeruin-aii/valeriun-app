@@ -1,37 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { AppLayout } from "@/components/app-layout"
+import { CampaignDashboard } from "@/pages/campaign-dashboard"
+import { AgentAIPage } from "@/pages/agent-ai"
+import { IntegrationsPage } from "@/pages/integrations"
+import { PlaceholderPage } from "@/pages/placeholder"
 
 export function App() {
   return (
-    <AppLayout>
-      <div className="flex flex-col gap-6">
-        {/* Breadcrumb e Título da Página */}
-        <div className="flex flex-col gap-1.5">
-          <div className="text-[11px] font-bold tracking-wider uppercase text-muted-foreground">
-            Configurações do Workspace /{" "}
-            <span className="text-primary font-bold">Canais & Contas</span>
-          </div>
-
-          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Integrações & Contas de Anúncios
-          </h1>
-
-          <p className="text-sm text-muted-foreground">
-            Conecte seus canais de tráfego pago e gerencie os acessos de Agentes Autônomos de IA.
-          </p>
-        </div>
-
-        {/* Placeholder elegante para a Fase 2 (Integrações e Contas) */}
-        <div className="mt-4 rounded-xl border border-dashed border-border/80 bg-muted/20 p-12 text-center">
-          <div className="mx-auto flex max-w-md flex-col items-center gap-2">
-            <h3 className="text-base font-semibold text-foreground">
-              Layout e Menu Lateral Configurados
-            </h3>
-            <p className="text-xs text-muted-foreground">
-              A navegação lateral e o cabeçalho foram configurados com sucesso seguindo o design system e Shadcn UI.
-            </p>
-          </div>
-        </div>
-      </div>
-    </AppLayout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AppLayout><CampaignDashboard /></AppLayout>} />
+        <Route path="/agent-ai" element={<AgentAIPage />} />
+        <Route path="/relatorios" element={<AppLayout><CampaignDashboard /></AppLayout>} />
+        <Route path="/integracoes" element={<AppLayout><IntegrationsPage /></AppLayout>} />
+        <Route path="/perfil" element={<AppLayout><PlaceholderPage title="Perfil" /></AppLayout>} />
+        <Route path="/plano" element={<AppLayout><PlaceholderPage title="Plano" /></AppLayout>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
