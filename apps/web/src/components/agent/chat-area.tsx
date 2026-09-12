@@ -77,15 +77,20 @@ export function ChatArea({ onToggleSetup }: ChatAreaProps) {
   }, [messages])
 
   React.useEffect(() => {
-    let interval: NodeJS.Timeout
+    let timeoutId: NodeJS.Timeout
+    
+    const tick = () => {
+      setRecordingTime((prev) => prev + 1)
+      timeoutId = setTimeout(tick, 1000)
+    }
+
     if (isRecording) {
-      interval = setInterval(() => {
-        setRecordingTime((prev) => prev + 1)
-      }, 1000)
+      timeoutId = setTimeout(tick, 1000)
     } else {
       setRecordingTime(0)
     }
-    return () => clearInterval(interval)
+    
+    return () => clearTimeout(timeoutId)
   }, [isRecording])
 
   const formatTime = (seconds: number) => {
