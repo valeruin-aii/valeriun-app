@@ -1,0 +1,84 @@
+{
+  "runId": "valeriun-app-integracao-supabase-mtxpn1s6",
+  "feature": "integracao-supabase",
+  "agent": "antigravity",
+  "modo": "sequencial",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-09-12 01:32",
+  "branchTrabalho": "spec/integracao-supabase",
+  "baseDir": ".spec/features/integracao-supabase",
+  "specDir": ".spec",
+  "repoName": "valeriun-app",
+  "logsDir": "../onp-worktrees/valeriun-app-integracao-supabase-logs",
+  "ondas": [],
+  "faixas": [],
+  "sequenciais": [
+    {
+      "id": "T-005",
+      "titulo": "Remover variáveis sensíveis do frontend",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "apps/web/.env.example",
+        "apps/web/src/lib/supabase.ts"
+      ],
+      "refs": [
+        "AC-007"
+      ]
+    },
+    {
+      "id": "T-006",
+      "titulo": "Habilitar RLS em tabelas do Supabase",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "supabase/migrations/20240101000000_enable_rls.sql"
+      ],
+      "refs": [
+        "AC-008"
+      ]
+    },
+    {
+      "id": "T-007",
+      "titulo": "Configurar Rate Limiting via Banco",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "supabase/migrations/20240101000001_rate_limiting.sql"
+      ],
+      "refs": [
+        "AC-009"
+      ]
+    },
+    {
+      "id": "T-008",
+      "titulo": "Remover polling e usar Realtime",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "apps/web/src/components/agent/chat-area.tsx"
+      ],
+      "refs": [
+        "AC-007"
+      ]
+    },
+    {
+      "id": "T-009",
+      "titulo": "Implementar testes dos ACs",
+      "modelo": "claude-sonnet-5",
+      "esforco": "medium",
+      "arquivos": [
+        "test/integracao-supabase.spec.test.js"
+      ],
+      "refs": [
+        "AC-007",
+        "AC-008",
+        "AC-009"
+      ]
+    }
+  ],
+  "concluidas": [],
+  "avisos": []
+}

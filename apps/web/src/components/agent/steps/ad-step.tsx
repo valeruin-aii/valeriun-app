@@ -1,5 +1,4 @@
-import * as React from "react"
-import { Image as ImageIcon, Plus, Trash2, Wand2, PlusCircle, CheckCircle2, ChevronLeft, Save, Link as LinkIcon, Sparkles, Pencil, X, LayoutTemplate, SplitSquareHorizontal, Type } from "lucide-react"
+import { Image as ImageIcon, Plus, Trash2, Wand2, PlusCircle, CheckCircle2, ChevronLeft, Save, Sparkles, Pencil, X } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
 import { Card } from "@workspace/ui/components/card"

@@ -1,3 +1,5 @@
+import type { MetaInsightSummary } from "@/lib/meta-api"
+
 interface FunnelStep {
   title: string
   subtitle: string
@@ -10,98 +12,90 @@ interface FunnelStep {
 
 interface PipelineFunnelProps {
   objective?: string
+  realSummary?: MetaInsightSummary | null
 }
 
-export function PipelineFunnel({ objective = "todos" }: PipelineFunnelProps) {
+export function PipelineFunnel({ objective: _objective = "todos", realSummary = null }: PipelineFunnelProps) {
   const getFunnelSteps = (): FunnelStep[] => {
-    if (objective === "trafego_reconhecimento") {
+    if (!realSummary) {
       return [
         {
           title: "Alcance",
           subtitle: "Pessoas alcançadas",
-          value: "54.200",
+          value: "0",
           color: "bg-[#2563eb]",
           maxWidthClass: "w-full max-w-2xl",
           rateLabel: "Taxa de Cliques",
-          rateValue: "4.12%",
-        },
-        {
-          title: "Cliques no Link",
-          subtitle: "Visitaram a página de destino",
-          value: "2.233",
-          color: "bg-[#4f46e5]",
-          maxWidthClass: "w-[75%] max-w-[480px]",
-        },
-      ]
-    }
-
-    if (objective === "geracao_leads") {
-      return [
-        {
-          title: "Alcance",
-          subtitle: "Pessoas alcançadas",
-          value: "32.150",
-          color: "bg-[#2563eb]",
-          maxWidthClass: "w-full max-w-2xl",
-          rateLabel: "Taxa de Cliques",
-          rateValue: "5.80%",
+          rateValue: "0.00%",
         },
         {
           title: "Cliques",
-          subtitle: "Visitaram a landing page",
-          value: "1.864",
+          subtitle: "Cliques no link e anúncio",
+          value: "0",
           color: "bg-[#4f46e5]",
           maxWidthClass: "w-[78%] max-w-[500px]",
-          rateLabel: "Taxa de Conversão",
-          rateValue: "12.45%",
+          rateLabel: "Conversão",
+          rateValue: "0.00%",
         },
         {
-          title: "Leads Cadastrados",
-          subtitle: "Formulários e contatos recebidos",
-          value: "232",
+          title: "Resultados / Contatos",
+          subtitle: "Mensagens ou cadastros",
+          value: "0",
           color: "bg-[#9333ea]",
-          maxWidthClass: "w-[56%] max-w-[360px]",
+          maxWidthClass: "w-[58%] max-w-[370px]",
         },
       ]
     }
 
-    // Default: Vendas / Todos
-    return [
+    const reachVal = realSummary.reach || realSummary.impressions || 0
+    const clicksVal = realSummary.clicks || 0
+    const messagesVal = realSummary.messages || 0
+    const leadsVal = realSummary.leads || 0
+    const purchasesVal = realSummary.purchases || 0
+    const totalConversions = messagesVal + leadsVal + purchasesVal
+
+    const ctrVal = realSummary.ctr ? `${realSummary.ctr.toFixed(2)}%` : (reachVal > 0 ? `${((clicksVal / reachVal) * 100).toFixed(2)}%` : "0.00%")
+    const conversionRate = clicksVal > 0 ? `${((totalConversions / clicksVal) * 100).toFixed(2)}%` : "0.00%"
+
+    const steps: FunnelStep[] = [
       {
         title: "Alcance",
         subtitle: "Pessoas alcançadas",
-        value: "28.450",
+        value: reachVal.toLocaleString("pt-BR"),
         color: "bg-[#2563eb]",
         maxWidthClass: "w-full max-w-2xl",
-        rateLabel: "Taxa de Cliques",
-        rateValue: "6.46%",
+        rateLabel: "Taxa de Cliques (CTR)",
+        rateValue: ctrVal,
       },
       {
         title: "Cliques",
-        subtitle: "Visitaram a página",
-        value: "1.840",
+        subtitle: "Interações no anúncio",
+        value: clicksVal.toLocaleString("pt-BR"),
         color: "bg-[#4f46e5]",
         maxWidthClass: "w-[78%] max-w-[500px]",
-        rateLabel: "Conversão",
-        rateValue: "10.00%",
+        rateLabel: "Conversão de Contato",
+        rateValue: conversionRate,
       },
       {
-        title: "Leads Gerados",
-        subtitle: "Contatos / Cadastros",
-        value: "184",
+        title: messagesVal > 0 ? "Conversas WhatsApp" : leadsVal > 0 ? "Leads Cadastrados" : "Resultados",
+        subtitle: messagesVal > 0 ? "Conversas iniciadas no WhatsApp" : leadsVal > 0 ? "Formulários recebidos" : "Ações registradas",
+        value: (messagesVal || leadsVal || totalConversions).toLocaleString("pt-BR"),
         color: "bg-[#9333ea]",
         maxWidthClass: "w-[58%] max-w-[370px]",
-        rateLabel: "Fechamento",
-        rateValue: "48.37%",
-      },
-      {
-        title: "Compras",
-        subtitle: "Compras confirmadas",
-        value: "89",
-        color: "bg-[#059669]",
-        maxWidthClass: "w-[38%] max-w-[245px]",
       },
     ]
+
+    if (purchasesVal > 0) {
+      steps.push({
+        title: "Compras Confirmadas",
+        subtitle: "Vendas atribuídas pela Meta",
+        value: purchasesVal.toLocaleString("pt-BR"),
+        color: "bg-[#059669]",
+        maxWidthClass: "w-[38%] max-w-[245px]",
+      })
+    }
+
+    return steps
   }
 
   const steps = getFunnelSteps()

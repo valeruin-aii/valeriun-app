@@ -3,7 +3,7 @@ import { Sheet, SheetContent } from "@workspace/ui/components/sheet"
 import { CampaignSetup } from "@/components/agent/campaign-setup"
 import { ChatArea } from "@/components/agent/chat-area"
 import { Button } from "@workspace/ui/components/button"
-import { ChevronDown, MessageSquarePlus, PanelLeft } from "lucide-react"
+import { ChevronDown, MessageSquarePlus } from "lucide-react"
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@workspace/ui/components/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 

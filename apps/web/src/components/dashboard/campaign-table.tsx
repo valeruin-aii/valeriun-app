@@ -1,10 +1,13 @@
 import { Filter, Download } from "lucide-react"
 
+import type { MetaCampaignInsight } from "@/lib/meta-api"
+
 interface CampaignTableProps {
   isProMode?: boolean
+  realCampaigns?: MetaCampaignInsight[] | null
 }
 
-export function CampaignTable({ isProMode = true }: CampaignTableProps) {
+export function CampaignTable({ isProMode = true, realCampaigns = null }: CampaignTableProps) {
   return (
     <div className="w-full flex flex-col mb-8">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-4">
@@ -46,85 +49,98 @@ export function CampaignTable({ isProMode = true }: CampaignTableProps) {
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
-              <tr className="hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3.5 font-medium flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="truncate max-w-[280px] font-semibold text-foreground">[VENDAS] Escala Black Season • Sneaker UltraBoost</span>
-                </td>
-                <td className="px-4 py-3.5">
-                  <span className="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-md font-semibold uppercase tracking-wider border border-primary/20">Vendas</span>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 text-muted-foreground text-xs">Meta Ads</td>}
-                <td className="px-4 py-3.5 font-semibold text-foreground">R$ 18.420</td>
-                <td className="px-4 py-3.5 font-semibold text-foreground">1.460</td>
-                <td className="px-4 py-3.5">
-                  <div className="text-emerald-500 font-semibold text-xs">
-                    R$ 12,61 {isProMode && <span className="text-[10px] text-muted-foreground font-normal">(Meta R$ 16)</span>}
-                  </div>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 font-bold text-blue-500">5.4x</td>}
-                {isProMode && <td className="px-4 py-3.5 font-bold text-emerald-500">98/100</td>}
-              </tr>
+              {realCampaigns && realCampaigns.length > 0 ? (
+                realCampaigns.map((camp) => {
+                  const isActive = camp.status === "ACTIVE"
+                  const totalResults = (camp.messages || 0) + (camp.leads || 0) + (camp.purchases || 0)
+                  const unitCost = totalResults > 0 
+                    ? camp.spend / totalResults 
+                    : (camp.cpc > 0 ? camp.cpc : 0)
 
-              <tr className="hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3.5 font-medium flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="truncate max-w-[280px] font-semibold text-foreground">[LEADS] Software Gestão Financeira B2B</span>
-                </td>
-                <td className="px-4 py-3.5">
-                  <span className="bg-blue-500/10 text-blue-400 text-[10px] px-2 py-0.5 rounded-md font-semibold uppercase tracking-wider border border-blue-500/20">Leads WhatsApp</span>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 text-muted-foreground text-xs">WhatsApp Direct</td>}
-                <td className="px-4 py-3.5 font-semibold text-foreground">R$ 14.150</td>
-                <td className="px-4 py-3.5 font-semibold text-foreground">980</td>
-                <td className="px-4 py-3.5">
-                  <div className="text-emerald-500 font-semibold text-xs">
-                    R$ 14,43 {isProMode && <span className="text-[10px] text-muted-foreground font-normal">(Meta R$ 18)</span>}
-                  </div>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 font-bold text-blue-500">4.2x</td>}
-                {isProMode && <td className="px-4 py-3.5 font-bold text-emerald-500">94/100</td>}
-              </tr>
+                  const objectiveLabel = camp.objective.includes("LEAD") || camp.objective.includes("MESSAGE")
+                    ? "Leads WhatsApp"
+                    : camp.objective.includes("SALE") || camp.objective.includes("CONVERSION")
+                    ? "Vendas"
+                    : camp.objective.includes("TRAFFIC")
+                    ? "Tráfego"
+                    : camp.objective.replace("OUTCOME_", "")
 
-              <tr className="hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3.5 font-medium flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="truncate max-w-[280px] font-semibold text-foreground">[RETARGETING] Abandono de Carrinho 7D</span>
-                </td>
-                <td className="px-4 py-3.5">
-                  <span className="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-md font-semibold uppercase tracking-wider border border-primary/20">Vendas</span>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 text-muted-foreground text-xs">Meta Stories</td>}
-                <td className="px-4 py-3.5 font-semibold text-foreground">R$ 9.980</td>
-                <td className="px-4 py-3.5 font-semibold text-foreground">740</td>
-                <td className="px-4 py-3.5">
-                  <div className="text-emerald-500 font-semibold text-xs">
-                    R$ 13,48 {isProMode && <span className="text-[10px] text-muted-foreground font-normal">(Meta R$ 15)</span>}
-                  </div>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 font-bold text-blue-500">5.8x</td>}
-                {isProMode && <td className="px-4 py-3.5 font-bold text-emerald-500">96/100</td>}
-              </tr>
+                  const objectiveColor = camp.objective.includes("LEAD") || camp.objective.includes("MESSAGE")
+                    ? "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                    : camp.objective.includes("SALE") || camp.objective.includes("CONVERSION")
+                    ? "bg-primary/10 text-primary border-primary/20"
+                    : "bg-orange-500/10 text-orange-400 border-orange-500/20"
 
-              <tr className="hover:bg-muted/30 transition-colors">
-                <td className="px-4 py-3.5 font-medium flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-                  <span className="truncate max-w-[280px] font-semibold text-foreground">[BRANDING] Reconhecimento de Marca & Vídeos</span>
-                </td>
-                <td className="px-4 py-3.5">
-                  <span className="bg-orange-500/10 text-orange-400 text-[10px] px-2 py-0.5 rounded-md font-semibold uppercase tracking-wider border border-orange-500/20">Tráfego</span>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 text-muted-foreground text-xs">Instagram Reels</td>}
-                <td className="px-4 py-3.5 font-semibold text-foreground">R$ 6.100</td>
-                <td className="px-4 py-3.5 font-semibold text-foreground">240</td>
-                <td className="px-4 py-3.5">
-                  <div className="text-emerald-500 font-semibold text-xs">
-                    R$ 25,41 {isProMode && <span className="text-[10px] text-muted-foreground font-normal">(Meta R$ 25)</span>}
-                  </div>
-                </td>
-                {isProMode && <td className="px-4 py-3.5 font-bold text-blue-500">2.1x</td>}
-                {isProMode && <td className="px-4 py-3.5 font-bold text-emerald-500">88/100</td>}
-              </tr>
+                  const aiScore = isActive ? 92 : 75
+
+                  return (
+                    <tr key={camp.id} className="hover:bg-muted/30 transition-colors">
+                      <td className="px-4 py-3.5 font-medium flex items-center gap-2">
+                        <span 
+                          className={`h-2 w-2 rounded-full shrink-0 ${
+                            isActive ? "bg-emerald-500" : "bg-zinc-500"
+                          }`} 
+                          title={isActive ? "Campanha Ativa" : "Campanha Pausada"}
+                        />
+                        <span className="truncate max-w-[280px] font-semibold text-foreground">
+                          {camp.name}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3.5">
+                        <span className={`text-[10px] px-2 py-0.5 rounded-md font-semibold uppercase tracking-wider border ${objectiveColor}`}>
+                          {objectiveLabel}
+                        </span>
+                      </td>
+                      {isProMode && <td className="px-4 py-3.5 text-muted-foreground text-xs">Meta Ads</td>}
+                      <td className="px-4 py-3.5 font-semibold text-foreground">
+                        {camp.spend.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                      </td>
+                      <td className="px-4 py-3.5 font-semibold text-foreground">
+                        {totalResults > 0 ? (
+                          <span>
+                            {totalResults.toLocaleString("pt-BR")}{" "}
+                            <span className="text-[10px] text-muted-foreground font-normal">
+                              {camp.messages > 0 ? "msg" : camp.leads > 0 ? "leads" : "vendas"}
+                            </span>
+                          </span>
+                        ) : (
+                          <span>
+                            {camp.clicks.toLocaleString("pt-BR")}{" "}
+                            <span className="text-[10px] text-muted-foreground font-normal">cliques</span>
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3.5">
+                        <div className="text-emerald-500 font-semibold text-xs">
+                          {unitCost.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                          {totalResults === 0 && <span className="text-[10px] text-muted-foreground font-normal"> (CPC)</span>}
+                        </div>
+                      </td>
+                      {isProMode && (
+                        <td className="px-4 py-3.5 font-bold text-blue-500">
+                          {camp.purchases > 0 ? "3.5x" : "—"}
+                        </td>
+                      )}
+                      {isProMode && (
+                        <td className={`px-4 py-3.5 font-bold ${isActive ? "text-emerald-500" : "text-muted-foreground"}`}>
+                          {aiScore}/100
+                        </td>
+                      )}
+                    </tr>
+                  )
+                })
+              ) : (
+                <tr>
+                  <td colSpan={isProMode ? 8 : 5} className="px-4 py-12 text-center text-sm text-muted-foreground">
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <p className="font-semibold text-foreground">Nenhuma campanha com dados no período selecionado</p>
+                      <p className="text-xs text-muted-foreground max-w-md">
+                        Selecione outra conta de anúncio ativa acima ou alterne o período (ex: Histórico Completo) para visualizar os dados reais da Meta API.
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

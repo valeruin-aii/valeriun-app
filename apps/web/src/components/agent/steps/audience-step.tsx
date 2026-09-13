@@ -1,5 +1,5 @@
 import * as React from "react"
-import { MapPin, Target, Settings, ChevronLeft, ChevronRight, X, Sparkles, SlidersHorizontal, CheckSquare, Square, ShieldCheck, ChevronDown, ChevronUp, CheckCircle2, Circle } from "lucide-react"
+import { MapPin, Target, ChevronLeft, ChevronRight, X, Sparkles, SlidersHorizontal, ChevronDown, ChevronUp, CheckCircle2, Circle } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
 import { Card } from "@workspace/ui/components/card"
