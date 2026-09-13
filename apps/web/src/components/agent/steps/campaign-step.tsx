@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Sparkles, MessageCircle, DollarSign, ChevronRight, Save } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"

@@ -1,0 +1,27 @@
+{
+  "feature": "integracao-supabase",
+  "timestamp": "2026-09-12T01:50:23.460Z",
+  "gitRev": "6e1b96f",
+  "command": "pnpm test",
+  "reporter": "tap",
+  "exitCode": 0,
+  "testsParsed": 3,
+  "results": {
+    "AC-007": {
+      "status": "pass",
+      "testName": "AC-007: Ausência de Chaves Privadas no Frontend @spec:AC-007",
+      "method": "tap"
+    },
+    "AC-008": {
+      "status": "pass",
+      "testName": "AC-008: Tabelas Protegidas por Row Level Security (RLS) @spec:AC-008",
+      "method": "tap"
+    },
+    "AC-009": {
+      "status": "pass",
+      "testName": "AC-009: Limitação de Tráfego (Rate Limit) @spec:AC-009",
+      "method": "tap"
+    }
+  },
+  "principles": {}
+}

@@ -2,7 +2,9 @@
   "name": "valeriun-app",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
+    "test": "node --test --test-reporter tap test/**/*.spec.test.js",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",

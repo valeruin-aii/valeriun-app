@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Mic, Send, Paperclip, Sparkles, StopCircle, Plus, ImageIcon } from "lucide-react"
+import { Mic, Send, Paperclip, Sparkles, StopCircle } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
 
@@ -77,15 +77,20 @@ export function ChatArea({ onToggleSetup }: ChatAreaProps) {
   }, [messages])
 
   React.useEffect(() => {
-    let interval: NodeJS.Timeout
+    let timeoutId: ReturnType<typeof setTimeout>
+    
+    const tick = () => {
+      setRecordingTime((prev) => prev + 1)
+      timeoutId = setTimeout(tick, 1000)
+    }
+
     if (isRecording) {
-      interval = setInterval(() => {
-        setRecordingTime((prev) => prev + 1)
-      }, 1000)
+      timeoutId = setTimeout(tick, 1000)
     } else {
       setRecordingTime(0)
     }
-    return () => clearInterval(interval)
+    
+    return () => clearTimeout(timeoutId)
   }, [isRecording])
 
   const formatTime = (seconds: number) => {

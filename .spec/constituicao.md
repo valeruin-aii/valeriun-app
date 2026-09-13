@@ -46,4 +46,10 @@ Respeitar rigorosamente o gerenciador de cada camada:
 
 - verificação(gate): intrínseca à configuração de workspace
 
+## P-007 [DEVE] Validação de infraestrutura Supabase em specs de backend
+
+Ao criar ou atualizar especificações (`.spec`) com escopo de backend, é obrigatório verificar e planejar a infraestrutura no Supabase (migrações SQL, RLS, schemas e Edge Functions). Nenhuma tarefa de backend deve ser executada sem validar se a infraestrutura necessária no Supabase foi devidamente criada ou especificada.
+
+- verificação(gate): intrínseca ao planejamento de spec
+
 

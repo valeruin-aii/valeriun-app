@@ -10,42 +10,65 @@ import {
   YAxis 
 } from "recharts"
 
-const chartData1 = [
-  { name: "03/09", investido: 220, receita: 880, conversas: 23 },
-  { name: "04/09", investido: 240, receita: 1040, conversas: 27 },
-  { name: "05/09", investido: 230, receita: 950, conversas: 24 },
-  { name: "06/09", investido: 260, receita: 1180, conversas: 30 },
-  { name: "07/09", investido: 250, receita: 1100, conversas: 28 },
-  { name: "08/09", investido: 220, receita: 900, conversas: 23 },
-  { name: "09/09", investido: 230, receita: 920, conversas: 23 },
-]
-
-const chartData2 = [
-  { name: "03/09", cpl: 6.5, ctr: 1.8 },
-  { name: "04/09", cpl: 6.6, ctr: 2.2 },
-  { name: "05/09", cpl: 6.5, ctr: 1.9 },
-  { name: "06/09", cpl: 6.7, ctr: 2.4 },
-  { name: "07/09", cpl: 6.8, ctr: 2.1 },
-  { name: "08/09", cpl: 7.2, ctr: 1.7 },
-  { name: "09/09", cpl: 7.4, ctr: 1.9 },
-]
+import type { MetaCampaignInsight, MetaInsightSummary } from "@/lib/meta-api"
 
 interface PerformanceChartProps {
   isProMode?: boolean
+  realCampaigns?: MetaCampaignInsight[] | null
+  realSummary?: MetaInsightSummary | null
 }
 
-export function PerformanceChart({ isProMode = true }: PerformanceChartProps) {
+export function PerformanceChart({ isProMode = true, realCampaigns = null }: PerformanceChartProps) {
+  // Filtra apenas campanhas reais que tiveram atividade / cliques / investimento
+  const activeCampaigns = (realCampaigns || [])
+    .filter(c => c.spend > 0 || c.clicks > 0 || c.messages > 0 || c.leads > 0)
+    .slice(0, 7)
+
+  const chartData1 = activeCampaigns.map(c => ({
+    name: c.name.length > 14 ? c.name.slice(0, 12) + ".." : c.name,
+    fullName: c.name,
+    investido: Math.round(c.spend),
+    conversas: (c.messages || 0) + (c.leads || 0) + (c.purchases || 0),
+    cliques: c.clicks || 0,
+  }))
+
+  const chartData2 = activeCampaigns.map(c => {
+    const totalResults = (c.messages || 0) + (c.leads || 0) + (c.purchases || 0)
+    const unitCost = totalResults > 0 ? Number((c.spend / totalResults).toFixed(2)) : Number((c.cpc || 0).toFixed(2))
+    return {
+      name: c.name.length > 14 ? c.name.slice(0, 12) + ".." : c.name,
+      fullName: c.name,
+      cpl: unitCost,
+      ctr: Number((c.ctr || 0).toFixed(2)),
+    }
+  })
+
+  const hasData = chartData1.length > 0
+
+  if (!hasData) {
+    return (
+      <div className="w-full bg-card border border-border/80 rounded-2xl p-8 mb-8 text-center shadow-sm">
+        <h3 className="text-base font-bold tracking-tight text-foreground mb-1">
+          Gráficos de Desempenho
+        </h3>
+        <p className="text-xs text-muted-foreground">
+          Nenhuma métrica de investimento registrada para as campanhas desta conta no período selecionado.
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div className={`grid grid-cols-1 ${isProMode ? "lg:grid-cols-2" : ""} gap-6 w-full mb-8`}>
-      {/* Gráfico 1: Investimento vs Faturamento vs Leads */}
+      {/* Gráfico 1: Investimento vs Leads por Campanha */}
       <div className="flex flex-col bg-card border border-border/80 rounded-2xl p-6 shadow-sm">
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <h3 className="text-base font-bold tracking-tight text-foreground">
-              Investimento vs Faturamento vs Leads
+              Investimento vs Resultados por Campanha
             </h3>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Comparativo semanal de gastos e retornos de campanhas ativas.
+              Comparativo de gastos e resultados reais das campanhas ativas.
             </p>
           </div>
           {!isProMode && (

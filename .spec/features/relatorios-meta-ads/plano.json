@@ -1,0 +1,74 @@
+{
+  "runId": "valeriun-app-relatorios-meta-ads-initial",
+  "feature": "relatorios-meta-ads",
+  "agent": "antigravity",
+  "modo": "sequencial",
+  "paralelizar": null,
+  "modeloForcado": null,
+  "esforcoForcado": null,
+  "geradoEm": "2026-09-13 17:05",
+  "branchTrabalho": "spec/relatorios-meta-ads",
+  "baseDir": ".spec/features/relatorios-meta-ads",
+  "specDir": ".spec",
+  "repoName": "valeriun-app",
+  "ondas": [],
+  "faixas": [],
+  "sequenciais": [],
+  "concluidas": [
+    {
+      "id": "T-010",
+      "titulo": "Criar migration de cache de metricas no Supabase",
+      "arquivos": [
+        "supabase/migrations/20260913000003_meta_insights_cache.sql"
+      ],
+      "refs": [
+        "AC-010"
+      ]
+    },
+    {
+      "id": "T-011",
+      "titulo": "Implementar Edge Function meta-insights",
+      "arquivos": [
+        "supabase/functions/meta-insights/index.ts"
+      ],
+      "refs": [
+        "AC-010",
+        "AC-011"
+      ]
+    },
+    {
+      "id": "T-012",
+      "titulo": "Expandir servico meta-api no frontend",
+      "arquivos": [
+        "apps/web/src/lib/meta-api.ts"
+      ],
+      "refs": [
+        "AC-011",
+        "AC-012"
+      ]
+    },
+    {
+      "id": "T-013",
+      "titulo": "Conectar CampaignDashboard a dados reais da Meta",
+      "arquivos": [
+        "apps/web/src/pages/campaign-dashboard.tsx"
+      ],
+      "refs": [
+        "AC-012"
+      ]
+    },
+    {
+      "id": "T-014",
+      "titulo": "Testes automatizados dos criterios de aceite de relatorios",
+      "arquivos": [
+        "test/relatorios-meta-ads.spec.test.js"
+      ],
+      "refs": [
+        "AC-010",
+        "AC-011",
+        "AC-012"
+      ]
+    }
+  ],
+  "avisos": []
+}

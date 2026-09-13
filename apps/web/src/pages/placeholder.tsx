@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Construction } from "lucide-react"
 
 export function PlaceholderPage({ title }: { title: string }) {

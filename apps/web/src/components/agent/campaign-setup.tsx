@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Settings2, X } from "lucide-react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
 import { Badge } from "@workspace/ui/components/badge"
 import { CampaignStep } from "./steps/campaign-step"
 import { AudienceStep } from "./steps/audience-step"

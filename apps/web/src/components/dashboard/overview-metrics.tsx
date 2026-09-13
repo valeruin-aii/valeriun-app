@@ -46,10 +46,10 @@ const defaultMetrics: MetricCardData[] = [
     title: "Investimento",
     fullName: "Investimento Total (Spend)",
     icon: CreditCard,
-    value: "R$ 48.650",
-    cents: ",00",
-    change: "↑ +12.4%",
-    changeSub: "vs anterior",
+    value: "—",
+    cents: "",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Volume financeiro total consumido em anúncios no período selecionado.",
     idealBehavior: {
@@ -65,9 +65,9 @@ const defaultMetrics: MetricCardData[] = [
     title: "Impressões",
     fullName: "Impressões Totais",
     icon: Eye,
-    value: "2.840.120",
-    change: "↑ +18.2%",
-    changeSub: "vs anterior",
+    value: "—",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Total de vezes que os seus anúncios foram renderizados na tela dos usuários.",
     idealBehavior: {
@@ -83,9 +83,9 @@ const defaultMetrics: MetricCardData[] = [
     title: "Cliques Totais",
     fullName: "Cliques no Anúncio & Link",
     icon: MousePointerClick,
-    value: "94.320",
-    change: "↑ +14.6%",
-    changeSub: "CTR 3.32%",
+    value: "—",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Quantidade de toques ou cliques que direcionaram para a página ou WhatsApp.",
     idealBehavior: {
@@ -101,11 +101,11 @@ const defaultMetrics: MetricCardData[] = [
     title: "Conversões",
     fullName: "Conversões Confirmadas",
     icon: CheckCircle2,
-    value: "3.420",
-    change: "↑ +24.8%",
-    changeSub: "vs anterior",
+    value: "—",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
-    description: "Total de ações de alto valor concluídas (pedidos pagos ou leads qualificados).",
+    description: "Total de ações concluídas (mensagens WhatsApp, formulários ou compras registradas).",
     idealBehavior: {
       type: "higher",
       label: "Melhor Maior",
@@ -119,12 +119,12 @@ const defaultMetrics: MetricCardData[] = [
     title: "CPA Médio",
     fullName: "CPA (Custo por Aquisição)",
     icon: Activity,
-    value: "R$ 14",
-    cents: ",22",
-    change: "↓ -9.8%",
-    changeSub: "favorável",
+    value: "—",
+    cents: "",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
-    description: "Valor médio investido para gerar cada cliente ou venda confirmada.",
+    description: "Valor médio investido para gerar cada cliente ou ação confirmada.",
     idealBehavior: {
       type: "lower",
       label: "Melhor Menor",
@@ -138,8 +138,8 @@ const defaultMetrics: MetricCardData[] = [
     title: "ROAS Consolidado",
     fullName: "ROAS (Retorno sobre Gasto)",
     icon: TrendingUp,
-    value: "4.82x",
-    change: "+0.6x incremento",
+    value: "—",
+    change: "Meta Ads",
     changeType: "badge",
     description: "Multiplicador de retorno: faturamento bruto dividido pelo total investido.",
     idealBehavior: {
@@ -159,10 +159,10 @@ const leadsMetrics: MetricCardData[] = [
     title: "Investimento",
     fullName: "Investimento Total (Spend)",
     icon: CreditCard,
-    value: "R$ 48.650",
-    cents: ",00",
-    change: "↑ +12.4%",
-    changeSub: "vs anterior",
+    value: "—",
+    cents: "",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Volume financeiro total consumido em anúncios no período selecionado.",
     idealBehavior: {
@@ -178,9 +178,9 @@ const leadsMetrics: MetricCardData[] = [
     title: "Impressões",
     fullName: "Impressões Totais",
     icon: Eye,
-    value: "2.840.120",
-    change: "↑ +18.2%",
-    changeSub: "vs anterior",
+    value: "—",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Total de vezes que os seus anúncios foram renderizados na tela dos usuários.",
     idealBehavior: {
@@ -196,9 +196,9 @@ const leadsMetrics: MetricCardData[] = [
     title: "Cliques Totais",
     fullName: "Cliques no Anúncio & Link",
     icon: MousePointerClick,
-    value: "94.320",
-    change: "↑ +14.6%",
-    changeSub: "CTR 3.32%",
+    value: "—",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Volume de toques que direcionaram o usuário para a conversa de WhatsApp ou LP.",
     idealBehavior: {
@@ -214,9 +214,9 @@ const leadsMetrics: MetricCardData[] = [
     title: "Leads Gerados",
     fullName: "Leads & Conversas WhatsApp",
     icon: MessageSquare,
-    value: "3.420",
-    change: "↑ +24.8%",
-    changeSub: "vs anterior",
+    value: "—",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Contatos reais que iniciaram conversa no WhatsApp ou preencheram cadastro.",
     idealBehavior: {
@@ -232,10 +232,10 @@ const leadsMetrics: MetricCardData[] = [
     title: "CPL Médio",
     fullName: "CPL (Custo por Lead)",
     icon: Activity,
-    value: "R$ 14",
-    cents: ",22",
-    change: "↓ -9.8%",
-    changeSub: "favorável",
+    value: "—",
+    cents: "",
+    change: "Meta Ads",
+    changeSub: "Aguardando sincronização",
     changeType: "positive",
     description: "Custo médio pago para gerar cada novo contato ou conversa iniciada.",
     idealBehavior: {
@@ -251,8 +251,8 @@ const leadsMetrics: MetricCardData[] = [
     title: "Taxa de Conversão",
     fullName: "Taxa de Conversão de Leads",
     icon: TrendingUp,
-    value: "3.63%",
-    change: "+0.8pp vs anterior",
+    value: "—",
+    change: "Meta Ads",
     changeType: "badge",
     description: "Percentual de pessoas que clicaram no anúncio e de fato enviaram mensagem/lead.",
     idealBehavior: {
@@ -266,22 +266,148 @@ const leadsMetrics: MetricCardData[] = [
   },
 ]
 
+import type { MetaInsightSummary } from "@/lib/meta-api"
+
 interface OverviewMetricsProps {
   reportMode?: string
   isProMode?: boolean
+  realSummary?: MetaInsightSummary | null
 }
 
 export function OverviewMetrics({ 
   reportMode = "automatico", 
-  isProMode = true 
+  isProMode = true,
+  realSummary = null
 }: OverviewMetricsProps) {
   const isLeadsMode = reportMode === "whatsapp_leads"
   const allMetrics = isLeadsMode ? leadsMetrics : defaultMetrics
   
-  // No modo simples, filtra apenas as 4 métricas essenciais de negócio
-  const currentMetrics = isProMode 
+  // No modo simples, filtra apenas as 4 metricas essenciais de negocio
+  const baseMetrics = isProMode 
     ? allMetrics 
     : allMetrics.filter((m) => m.isSimpleEssential)
+
+  const currentMetrics = baseMetrics.map((m) => {
+    if (!realSummary) {
+      return {
+        ...m,
+        value: "—",
+        cents: "",
+        change: "Sem dados",
+        changeSub: "Aguardando sincronização"
+      }
+    }
+
+    if (m.id === "investimento") {
+      const parts = (realSummary.spend || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" }).split(",")
+      return { 
+        ...m, 
+        value: parts[0], 
+        cents: parts[1] ? `,${parts[1]}` : ",00", 
+        change: "Meta Ads Real", 
+        changeSub: realSummary.date_start ? `${realSummary.date_start} a ${realSummary.date_stop}` : "período selecionado"
+      }
+    }
+    if (m.id === "impressoes") {
+      return { 
+        ...m, 
+        value: (realSummary.impressions || 0).toLocaleString("pt-BR"), 
+        change: "Meta Ads Real",
+        changeSub: `Freq: ${(realSummary.frequency || 1).toFixed(2)}x`
+      }
+    }
+    if (m.id === "cliques") {
+      return { 
+        ...m, 
+        value: (realSummary.clicks || 0).toLocaleString("pt-BR"), 
+        change: `CTR ${(realSummary.ctr || 0).toFixed(2)}%`, 
+        changeSub: `CPC ${(realSummary.cpc || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}`
+      }
+    }
+    if (m.id === "cpc") {
+      return { 
+        ...m, 
+        value: (realSummary.cpc || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" }), 
+        change: "Meta Ads Real",
+        changeSub: "por clique no link"
+      }
+    }
+    if (m.id === "conversoes") {
+      const conv = (realSummary.messages || 0) + (realSummary.leads || 0) + (realSummary.purchases || 0)
+      return {
+        ...m,
+        value: conv.toLocaleString("pt-BR"),
+        change: "Meta Ads Real",
+        changeSub: realSummary.messages > 0 
+          ? `${realSummary.messages} msgs WhatsApp` 
+          : realSummary.leads > 0 
+          ? `${realSummary.leads} leads` 
+          : realSummary.purchases > 0 
+          ? `${realSummary.purchases} compras` 
+          : "sem conversões no período"
+      }
+    }
+    if (m.id === "conversas_wpp" || m.id === "leads") {
+      const count = (realSummary.messages || 0) + (realSummary.leads || 0)
+      return { 
+        ...m, 
+        value: count.toLocaleString("pt-BR"), 
+        change: "WhatsApp & Leads", 
+        changeSub: realSummary.messages > 0 ? `${realSummary.messages} msgs WhatsApp` : `${realSummary.leads} cadastros`
+      }
+    }
+    if (m.id === "cpa") {
+      const conv = (realSummary.messages || 0) + (realSummary.leads || 0) + (realSummary.purchases || 0)
+      const cpaVal = conv > 0 ? (realSummary.spend / conv) : (realSummary.cpc > 0 ? realSummary.cpc : 0)
+      const parts = cpaVal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }).split(",")
+      return {
+        ...m,
+        value: parts[0],
+        cents: parts[1] ? `,${parts[1]}` : ",00",
+        change: conv > 0 ? "Custo por Ação" : "CPC Médio",
+        changeSub: conv > 0 ? "calculado da Meta API" : "sem conversões"
+      }
+    }
+    if (m.id === "cpl") {
+      const count = (realSummary.messages || 0) + (realSummary.leads || 0)
+      const cplVal = count > 0 ? (realSummary.spend / count) : 0
+      const parts = cplVal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }).split(",")
+      return { 
+        ...m, 
+        value: parts[0], 
+        cents: parts[1] ? `,${parts[1]}` : ",00",
+        change: "Custo por Lead/Msg",
+        changeSub: count > 0 ? "calculado da Meta API" : "sem leads no período"
+      }
+    }
+    if (m.id === "taxa_contato") {
+      const conv = (realSummary.messages || 0) + (realSummary.leads || 0)
+      const rate = realSummary.clicks > 0 ? ((conv / realSummary.clicks) * 100).toFixed(2) : "0.00"
+      return {
+        ...m,
+        value: `${rate}%`,
+        change: "Conversão de Cliques",
+        changeSub: `${conv} de ${realSummary.clicks || 0} cliques`
+      }
+    }
+    if (m.id === "roas") {
+      const roasVal = realSummary.roas || (realSummary.spend > 0 && realSummary.purchase_value > 0 ? realSummary.purchase_value / realSummary.spend : 0)
+      return { 
+        ...m, 
+        value: roasVal > 0 ? `${roasVal.toFixed(1)}x` : "0.0x", 
+        change: realSummary.purchase_value > 0 ? `Retorno: ${realSummary.purchase_value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}` : "Sem compras registradas"
+      }
+    }
+    if (m.id === "alcance") {
+      return { 
+        ...m, 
+        value: (realSummary.reach || 0).toLocaleString("pt-BR"), 
+        change: "Pessoas Alcançadas",
+        changeSub: "Meta Ads Real"
+      }
+    }
+    return m
+  })
 
   const gridClass = isProMode
     ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 w-full"
